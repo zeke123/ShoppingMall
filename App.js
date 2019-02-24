@@ -8,7 +8,7 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {Platform, StyleSheet, Text, View,TextInput,Button} from 'react-native';
 
 const instructions = Platform.select({
     ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -23,7 +23,8 @@ export default class App extends Component<Props> {
             <View style={styles.container}>
 
                 <View style={styles.searchbar}>
-                    <Text>搜索框</Text>
+                    <TextInput style={styles.input} placeholder={'搜索商品'}/>
+                    <Button style={styles.button} title='搜索'/>
                 </View>
                 <View style={styles.advertisment}>
                     <Text>轮播广告</Text>
@@ -48,7 +49,8 @@ const styles = StyleSheet.create({
         height: 40,
         backgroundColor: 'red',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        flexDirection:'row',
     },
 
     advertisment: {
@@ -58,7 +60,17 @@ const styles = StyleSheet.create({
         alignItems: 'center',
 
     },
+    input:{
+        flex:1,
+        borderColor:'gray',
+        borderWidth:2,
 
+    },
+    button:{
+        flex:1,
+
+
+    },
     pruducts: {
 
         flex: 1,
