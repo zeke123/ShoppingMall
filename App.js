@@ -8,7 +8,7 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View,TextInput,Button} from 'react-native';
+import {Platform, StyleSheet, Text, View,TextInput,Button,ScrollView} from 'react-native';
 
 const instructions = Platform.select({
     ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -26,8 +26,29 @@ export default class App extends Component<Props> {
                     <TextInput style={styles.input} placeholder={'搜索商品'}/>
                     <Button style={styles.button} title='搜索'/>
                 </View>
+
                 <View style={styles.advertisment}>
-                    <Text>轮播广告</Text>
+                    <ScrollView ref="scrollView"
+                                horizontal={true}
+                                showsHorizontalScrollIndicator={false}//不显示滚动条
+                                pagingEnabled={true} //分页
+
+                    >
+
+                        <Text style={{
+                            width:100,height:180,backgroundColor:'gray'
+                        }}>广告1</Text>
+
+
+                        <Text style={{
+                            width:100,height:180,backgroundColor:'orange'
+                        }}>广告2</Text>
+
+                        <Text style={{
+                            width:100,height:180,backgroundColor:'yellow'
+                        }}>广告3</Text>
+
+                    </ScrollView>
                 </View>
 
                 <View style={styles.pruducts}>
