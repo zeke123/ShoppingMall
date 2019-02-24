@@ -25,6 +25,15 @@ export default class App extends Component<Props> {
                 <View style={styles.searchbar}>
                     <Text>搜索框</Text>
                 </View>
+                <View style={styles.advertisment}>
+                    <Text>轮播广告</Text>
+                </View>
+
+                <View style={styles.pruducts}>
+                    <Text>商品列表</Text>
+                </View>
+
+
             </View>
         );
     }
@@ -35,11 +44,28 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     searchbar: {
-        marginTop:20,
-        height:40,
-        backgroundColor:'red',
-        justifyContent:'center',
-        alignItems:'center'
+        marginTop: Platform.OS === 'ios' ? 20 : 0,
+        height: 40,
+        backgroundColor: 'red',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+
+    advertisment: {
+        height: 180,
+        backgroundColor: 'green',
+        justifyContent: 'center',
+        alignItems: 'center',
+
+    },
+
+    pruducts: {
+
+        flex: 1,
+        backgroundColor: 'blue',
+        justifyContent: 'center',
+        alignItems: 'center',
+
 
     },
     instructions: {
