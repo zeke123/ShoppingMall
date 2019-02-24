@@ -8,7 +8,18 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View,TextInput,Button,ScrollView} from 'react-native';
+import {
+    Platform,
+    StyleSheet,
+    Text,
+    View,
+    TextInput,
+    Button,
+    ScrollView,
+    Dimensions,
+
+
+} from 'react-native';
 
 const instructions = Platform.select({
     ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -16,8 +27,21 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-type Props = {};
+
 export default class App extends Component<Props> {
+
+    constructor(props) {//构造函数
+        super(props);
+        this.state = {currentPage: 0};
+    }
+
+
+    //页面渲染之前
+    componentWillMount() {
+
+    }
+
+
     render() {
         return (
             <View style={styles.container}>
@@ -36,16 +60,16 @@ export default class App extends Component<Props> {
                     >
 
                         <Text style={{
-                            width:100,height:180,backgroundColor:'gray'
+                            width: Dimensions.get('window').width, height: 180, backgroundColor: 'gray'
                         }}>广告1</Text>
 
 
                         <Text style={{
-                            width:100,height:180,backgroundColor:'orange'
+                            width: Dimensions.get('window').width, height: 180, backgroundColor: 'orange'
                         }}>广告2</Text>
 
                         <Text style={{
-                            width:100,height:180,backgroundColor:'yellow'
+                            width: Dimensions.get('window').width, height: 180, backgroundColor: 'yellow'
                         }}>广告3</Text>
 
                     </ScrollView>
@@ -59,6 +83,22 @@ export default class App extends Component<Props> {
             </View>
         );
     }
+
+
+    //在页面渲染之后
+    componentDidMount() {
+
+    }
+
+    //卸载组件
+    componentWillUnmount() {
+
+    }
+
+
+
+
+
 }
 
 const styles = StyleSheet.create({
@@ -71,7 +111,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'red',
         justifyContent: 'center',
         alignItems: 'center',
-        flexDirection:'row',
+        flexDirection: 'row',
     },
 
     advertisment: {
@@ -79,27 +119,23 @@ const styles = StyleSheet.create({
         backgroundColor: 'green',
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    input: {
+        flex: 1,
+        borderColor: 'gray',
+        borderWidth: 2,
 
     },
-    input:{
-        flex:1,
-        borderColor:'gray',
-        borderWidth:2,
-
-    },
-    button:{
-        flex:1,
-
-
+    button: {
+        flex: 1,
+        borderColor: 'gray',
+        borderWidth: 2,
     },
     pruducts: {
-
         flex: 1,
         backgroundColor: 'blue',
         justifyContent: 'center',
         alignItems: 'center',
-
-
     },
     instructions: {
         textAlign: 'center',
