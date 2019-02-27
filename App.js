@@ -16,8 +16,54 @@ import {
     TouchableOpacity,//本组件用于封装视图，使其可以正确响应触摸操作
 } from 'react-native';
 
+//模拟数据
+var data = {
+    "result": [
+        {
+            "name": "荔枝",
+            "price": "10.00"
+        },
+        {
+            "name": "橙子",
+            "price": "5.00"
+        },
+        {
+            "name": "苹果",
+            "price": "4.00"
+        },
+        {
+            "name": "葡萄",
+            "price": "6.00"
+        },
+        {
+            "name": "香蕉",
+            "price": "5.00"
+        },
+        {
+            "name": "桂圆",
+            "price": "8.00"
+        },
+        {
+            "name": "橘子",
+            "price": "3.00"
+        },
+        {
+            "name": "草莓",
+            "price": "5.00"
+        },
+        {
+            "name": "樱桃",
+            "price": "25.00"
+        },
+        {
+            "name": "桃子",
+            "price": "5.00"
+        }
+    ]
+};
+
 //创建ListView.DataSource数据源
-const datas = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
 //获取屏幕的宽和高
 const {width, height} = Dimensions.get('window');
@@ -27,11 +73,12 @@ export default class App extends Component<Props> {
     //生命周期方法 -->首先会执行构造函数
     constructor(props) {//构造函数
         super(props);
+
         this.state = {
             //初始化当前页
             currentPage: 0,
             //ListView数据源
-            dataSource: datas.cloneWithRows(['商品1', '商品2', '商品3', '商品4', '商品5', '商品6', '商品7', '商品8', '商品9', '商品10', '商品11', '商品12'])
+            dataSource: ds.cloneWithRows(data.result)
         };
     }
 
@@ -117,9 +164,7 @@ export default class App extends Component<Props> {
                         renderSeparator={(sectionID, rowID, adjacentRowHighlighted) =>
                             this.renderSeparator(sectionID, rowID, adjacentRowHighlighted)
                         }
-
-
-                        renderRow={this._renderRow}/>
+                        renderRow={(item) => this._renderRow(item)}/>
                 </View>
             </View>
         );
@@ -149,10 +194,11 @@ export default class App extends Component<Props> {
         clearInterval(this.inteval)
     }
 
-    _renderRow = (rowData, sectionID, rowID) => {
+    _renderRow(item) {
         return (
             <View style={styles.row}>
-                <Text >{rowData}</Text>
+                <Text style={styles.name_style}>{item.name}</Text>
+                <Text style={styles.price_style}>{item.price}</Text>
             </View>
         );
     }
@@ -292,9 +338,18 @@ const styles = StyleSheet.create({
     },
     row: {
         width: width,
-        height: 60,
+        height: 80,
+        flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    name_style: {
+        fontSize: 15,
+        color: '#ffffff',
+    },
+    price_style: {
+        fontSize: 15,//relative（默认值）和absolute。
+        color: '#ffffff',
     },
     instructions: {
         textAlign: 'center',
