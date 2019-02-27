@@ -1,4 +1,3 @@
-
 import React, {Component} from 'react';
 import {
     Platform,
@@ -10,10 +9,10 @@ import {
     ScrollView,
     Dimensions,
     ListView,
+    ToastAndroid,
 } from 'react-native';
 
 //创建ListView.DataSource数据源
-
 const datas = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
 export default class App extends Component<Props> {
@@ -24,6 +23,7 @@ export default class App extends Component<Props> {
             dataSource: datas.cloneWithRows(['商品1', '商品2', '商品3', '商品4', '商品5', '商品6', '商品7', '商品8', '商品9'])
         };
     }
+
     //页面渲染之前
     componentWillMount() {
     }
@@ -35,7 +35,8 @@ export default class App extends Component<Props> {
                 {/*顶部搜索商品*/}
                 <View style={styles.searchbar}>
                     <TextInput style={styles.input} placeholder={'搜索商品'}/>
-                    <Button style={styles.button} title='搜索'/>
+                    {/*Button添加点击事件 onPress={() => this.searchClick()} */}
+                    <Button style={styles.button} title='搜索' onPress={() => this.searchClick()}/>
                 </View>
 
                 {/*中间类似于viewpager轮播图*/}
@@ -72,12 +73,18 @@ export default class App extends Component<Props> {
         );
     }
 
-    _renderRow = (rowData,sectionID,rowID) => {
-       return(
-           <View style={styles.row}>
-               <Text >{rowData}</Text>
-           </View>
-       );
+    _renderRow = (rowData, sectionID, rowID) => {
+        return (
+            <View style={styles.row}>
+                <Text >{rowData}</Text>
+            </View>
+        );
+    }
+
+
+    //搜索的点击事件
+    searchClick() {
+        ToastAndroid.show("点击了", ToastAndroid.SHORT);
     }
 
     //在页面渲染之后
