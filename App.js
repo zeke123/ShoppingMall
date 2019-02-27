@@ -12,7 +12,7 @@ import {
     RefreshControl,
     ToastAndroid,
     Alert,
-    Image,
+    Image,//在图片外层添加TouchableOpacity，才能设置点击事件
     TouchableOpacity,//本组件用于封装视图，使其可以正确响应触摸操作
 } from 'react-native';
 
@@ -20,24 +20,32 @@ import {
 const datas = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
 export default class App extends Component<Props> {
+
+    //生命周期方法 -->首先会执行构造函数
     constructor(props) {//构造函数
         super(props);
         this.state = {
+            //初始化当前页
             currentPage: 0,
+            //ListView数据源
             dataSource: datas.cloneWithRows(['商品1', '商品2', '商品3', '商品4', '商品5', '商品6', '商品7', '商品8', '商品9', '商品10', '商品11', '商品12'])
         };
     }
 
-    //页面渲染之前
+    //生命周期方法 -->在render方法执行前执行，只会被执行一次，
     componentWillMount() {
 
     }
 
+    //生命周期方法 -->用于渲染界面
     render() {
         return (
             <View style={styles.container}>
 
-                {/*顶部搜索商品*/}
+                {/*
+                 顶部搜索商品
+                 Image 加载本地图片：require('./images/header/header_logo.png')
+                 */}
                 <View style={styles.searchbar}>
                     <Image
                         source={require('./images/header/header_logo.png')}
@@ -65,7 +73,6 @@ export default class App extends Component<Props> {
                             style={styles.scanIcon}/>
                     </TouchableOpacity>
                 </View>
-
 
                 {/*
                  中间类似于viewpager轮播图
@@ -106,6 +113,18 @@ export default class App extends Component<Props> {
         );
     }
 
+    //生命周期方法 -->在页面渲染之后
+    componentDidMount() {
+        //页面渲染之后，开启定时
+        this.startTiming();
+    }
+
+    //生命周期方法 -->卸载组件
+    componentWillUnmount() {
+        //清除定时
+        clearInterval(this.inteval)
+    }
+
     _renderRow = (rowData, sectionID, rowID) => {
         return (
             <View style={styles.row}>
@@ -124,21 +143,15 @@ export default class App extends Component<Props> {
         ToastAndroid.show("点击了语音的图片", ToastAndroid.SHORT);
     }
 
-
     //点击确定的事件
     onSureClick() {
         ToastAndroid.show("点击了扫描的图片", ToastAndroid.SHORT);
     }
 
-    //在页面渲染之后
-    componentDidMount() {
-        //页面渲染之后，开启定时
-        this.startTiming();
-    }
-
     //开启定时
     startTiming() {
-        this.inteval = setInterval(() => {
+        //设置定时
+        this.nterval = setInterval(() => {
             nextpage = this.state.currentPage + 1;
             if (nextpage >= 3) {
                 nextpagen = 0;
@@ -147,12 +160,6 @@ export default class App extends Component<Props> {
             const offSetX = nextpage * Dimensions.get('window').width;
             this.refs.scrollView.scrollResponderScrollTo({x: offSetX, y: 0, animated: true})
         }, 2000)
-    }
-
-    //卸载组件
-    componentWillUnmount() {
-        //清除定时
-        clearInterval(this.inteval)
     }
 }
 
