@@ -105,7 +105,7 @@ export default class App extends Component<Props> {
                     </ScrollView>
                 </View>
 
-                {/*底部商品列表listview*/}
+                {/*底部商品列表listview  renderRow：接收数据，并渲染数据  */}
                 <View style={styles.pruducts}>
                     <ListView
                         dataSource={this.state.dataSource}
@@ -160,7 +160,7 @@ export default class App extends Component<Props> {
                 nextpagen = 0;
             }
             this.setState({currentPage: nextpage});
-            const offSetX = nextpage * Dimensions.get('window').width;
+            const offSetX = nextpage * width;
             this.refs.scrollView.scrollResponderScrollTo({x: offSetX, y: 0, animated: true})
         }, 2000)
     }
