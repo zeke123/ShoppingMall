@@ -33,11 +33,13 @@ export default class App extends Component<Props> {
         return (
             <View style={styles.container}>
 
+                {/*顶部搜索商品*/}
                 <View style={styles.searchbar}>
                     <TextInput style={styles.input} placeholder={'搜索商品'}/>
                     <Button style={styles.button} title='搜索'/>
                 </View>
 
+                {/*中间类似于viewpager轮播图*/}
                 <View style={styles.advertisment}>
                     <ScrollView ref="scrollView"
                                 horizontal={true}
@@ -61,6 +63,7 @@ export default class App extends Component<Props> {
                     </ScrollView>
                 </View>
 
+                {/*底部商品列表listview*/}
                 <View style={styles.pruducts}>
                     <ListView dataSource={this.state.dataSource} enableEmptySections={true}
                               showsHorizontalScrollIndicator={false}
