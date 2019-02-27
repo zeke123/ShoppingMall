@@ -11,6 +11,7 @@ import {
     ListView,
     RefreshControl,
     ToastAndroid,
+    Alert,
 } from 'react-native';
 
 //创建ListView.DataSource数据源
@@ -24,6 +25,7 @@ export default class App extends Component<Props> {
             dataSource: datas.cloneWithRows(['商品1', '商品2', '商品3', '商品4', '商品5', '商品6', '商品7', '商品8', '商品9', '商品10', '商品11', '商品12'])
         };
     }
+
     //页面渲染之前
     componentWillMount() {
 
@@ -40,13 +42,16 @@ export default class App extends Component<Props> {
                     <Button style={styles.button} title='搜索' onPress={() => this.searchClick()}/>
                 </View>
 
-                {/*中间类似于viewpager轮播图*/}
+                {/*
+                 中间类似于viewpager轮播图
+                 showsHorizontalScrollIndicator：是否显示滚动条
+                 pagingEnabled：是否显示分页
+                 */}
+
                 <View style={styles.advertisment}>
                     <ScrollView ref="scrollView"
                                 horizontal={true}
-                        //不显示滚动条
                                 showsHorizontalScrollIndicator={false}
-                        //分页
                                 pagingEnabled={true}>
 
                         <View style={styles.first_advertisment}>
@@ -84,8 +89,14 @@ export default class App extends Component<Props> {
 
     //搜索的点击事件
     searchClick() {
-        ToastAndroid.show("点击了", ToastAndroid.SHORT);
+        Alert.alert('标题', '只有一个按钮的提示内容', [{text: '确定', onPress: () => this.onSureClick()}]);
     }
+
+    onSureClick() {
+        ToastAndroid.show("确定", ToastAndroid.SHORT);
+
+    }
+
 
     //在页面渲染之后
     componentDidMount() {
