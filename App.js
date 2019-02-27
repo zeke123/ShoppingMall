@@ -12,6 +12,8 @@ import {
     RefreshControl,
     ToastAndroid,
     Alert,
+    Image,
+    TouchableOpacity,//本组件用于封装视图，使其可以正确响应触摸操作
 } from 'react-native';
 
 //创建ListView.DataSource数据源
@@ -36,16 +38,33 @@ export default class App extends Component<Props> {
             <View style={styles.container}>
 
                 {/*顶部搜索商品*/}
+
                 <View style={styles.searchbar}>
-                    <TextInput
-                        style={styles.input}
-                        placeholder={'搜索商品'}/>
-                    {/*Button添加点击事件 onPress={() => this.searchClick()} */}
-                    <Button
-                        style={styles.button}
-                        title='搜索'
-                        onPress={() => this.searchClick()}/>
+                    <Image
+                        source={require('./images/header/header_logo.png')}
+                        style={styles.logo}/>
+
+                    <View style={styles.searchBox}>
+                        <Image
+                            source={require('./images/header/icon_search.png')}
+                            style={styles.searchIcon}/>
+                        <TextInput
+                            keyboardType='web-search'
+                            placeholder='搜索京东商品/店铺'
+                            style={styles.inputText}/>
+                        <Image
+                            source={require('./images/header/icon_voice.png')}
+                            style={styles.voiceIcon}/>
+                    </View>
+
+
+                    <TouchableOpacity onPress={() => this.searchClick()}>
+                        <Image
+                            source={require('./images/header/icon_qr.png')}
+                            style={styles.scanIcon}/>
+                    </TouchableOpacity>
                 </View>
+
 
                 {/*
                  中间类似于viewpager轮播图
@@ -135,8 +154,11 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     searchbar: {
-        marginTop: Platform.OS === 'ios' ? 20 : 0,
-        height: 40,
+        flexDirection: 'row',
+        //可以决定其子元素沿着次轴的排列方式：
+        //row:水平轴
+        //column:竖直轴（默认为竖直轴）
+
         backgroundColor: 'red',
         justifyContent: 'center',//可以决定其子元素沿着主轴的排列方式：
         //flex-start:从行首开始排列
@@ -146,10 +168,53 @@ const styles = StyleSheet.create({
         //space-around: 在每行上均匀分配弹性元素
 
         alignItems: 'center',
-        //可以决定其子元素沿着次轴的排列方式：
+        paddingLeft: 10,
+        paddingRight: 10,
+        paddingTop: Platform.OS === 'ios' ? 20 : 0,// 处理iOS状态栏
+        height: Platform.OS === 'ios' ? 68 : 48,   // 处理iOS状态栏
+        backgroundColor: '#d74047',
+        alignItems: 'center'  // 使元素垂直居中排布, 当flexDirection为column时, 为水平居中
+    },
+
+    logo: {
+        height: 24,
+        width: 64,
+        resizeMode: 'stretch'  // 设置拉伸模式
+    },
+    searchBox: {
+        height: 30,
         flexDirection: 'row',
-        //row:水平轴
-        //column:竖直轴（默认为竖直轴）
+        flex: 1,  // 类似于android中的layout_weight,设置为1即自动拉伸填充
+        borderRadius: 5,  // 设置圆角边
+        backgroundColor: 'white',
+        alignItems: 'center',
+        marginLeft: 8,
+        marginRight: 12
+    },
+    scanIcon: {
+        height: 26,
+        width: 26,
+        resizeMode: 'stretch'
+    },
+    searchIcon: {
+        marginLeft: 6,
+        marginRight: 6,
+        width: 16,
+        height: 16,
+        resizeMode: 'stretch'
+    },
+    voiceIcon: {
+        marginLeft: 5,
+        marginRight: 8,
+        width: 15,
+        height: 20,
+        resizeMode: 'stretch'
+    },
+    inputText: {
+        flex: 1,
+        height: 60,
+        backgroundColor: 'transparent',
+        fontSize: 16
     },
     advertisment: {
         height: 180,
