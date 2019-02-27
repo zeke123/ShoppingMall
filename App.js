@@ -154,13 +154,13 @@ export default class App extends Component<Props> {
     //开启定时
     startTiming() {
         //设置定时
-        this.nterval = setInterval(() => {
+        this.inteval = setInterval(() => {
             nextpage = this.state.currentPage + 1;
             if (nextpage >= 3) {
                 nextpagen = 0;
             }
             this.setState({currentPage: nextpage});
-            const offSetX = nextpage * width;
+            const offSetX = nextpage * Dimensions.get('window').width;
             this.refs.scrollView.scrollResponderScrollTo({x: offSetX, y: 0, animated: true})
         }, 2000)
     }
