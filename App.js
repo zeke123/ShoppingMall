@@ -60,7 +60,7 @@ export default class App extends Component<Props> {
                             style={styles.searchIcon}/>
                         <TextInput
                             keyboardType='web-search'
-                            placeholder='搜索京东商品/店铺'
+                            placeholder='搜索商品/店铺'
                             style={styles.inputText}/>
 
                         <TouchableOpacity onPress={() => this.onVoiceClick()}>
@@ -105,16 +105,37 @@ export default class App extends Component<Props> {
                     </ScrollView>
                 </View>
 
-                {/*底部商品列表listview  renderRow：接收数据，并渲染数据  */}
+                {/*
+                 底部商品列表listview
+                 renderRow：接收数据，并渲染数据
+                 renderSeparator:设置分割线
+                 */}
                 <View style={styles.pruducts}>
                     <ListView
                         dataSource={this.state.dataSource}
                         showsVerticalScrollIndicator={false}
+                        renderSeparator={(sectionID, rowID, adjacentRowHighlighted) =>
+                            this.renderSeparator(sectionID, rowID, adjacentRowHighlighted)
+                        }
+
+
                         renderRow={this._renderRow}/>
                 </View>
             </View>
         );
     }
+
+    /**
+     * 设置listview分割线
+     * @param sectionID
+     * @param rowID
+     * @param adjacentRowHighlighted
+     * @returns {XML}
+     */
+    renderSeparator(sectionID, rowID, adjacentRowHighlighted) {
+        return <View key={rowID} style={styles.line}></View>
+    }
+
 
     //生命周期方法 -->在页面渲染之后
     componentDidMount() {
@@ -279,5 +300,9 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: '#333333',
         marginBottom: 5,
+    },
+    line: {
+        height: 1,
+        backgroundColor: '#999999'
     },
 });
