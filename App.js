@@ -73,7 +73,6 @@ export default class App extends Component<Props> {
     //生命周期方法 -->首先会执行构造函数
     constructor(props) {//构造函数
         super(props);
-
         this.state = {
             //初始化当前页
             currentPage: 0,
@@ -196,11 +195,18 @@ export default class App extends Component<Props> {
 
     _renderRow(item) {
         return (
-            <View style={styles.row}>
-                <Text style={styles.name_style}>{item.name}</Text>
-                <Text style={styles.price_style}>{item.price}</Text>
-            </View>
+            <TouchableOpacity onPress={() => this.onListViewItemClick(item)}>
+                <View style={styles.row}>
+                    <Text style={styles.name_style}>{item.name}</Text>
+                    <Text style={styles.price_style}>{item.price}</Text>
+                </View>
+            </TouchableOpacity>
         );
+    }
+
+    // ListView的item的点击事件
+    onListViewItemClick(item) {
+        ToastAndroid.show("点击了->"+item.name, ToastAndroid.SHORT);
     }
 
     //扫描的点击事件
