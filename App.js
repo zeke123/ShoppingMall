@@ -1,11 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- * @lint-ignore-every XPLATJSCOPYRIGHT1
- */
 
 import React, {Component} from 'react';
 import {
@@ -21,6 +13,7 @@ import {
 } from 'react-native';
 
 //创建ListView.DataSource数据源
+
 const datas = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
 export default class App extends Component<Props> {
@@ -70,12 +63,12 @@ export default class App extends Component<Props> {
 
                 <View style={styles.pruducts}>
                     <ListView dataSource={this.state.dataSource} enableEmptySections={true}
+                              showsHorizontalScrollIndicator={false}
                               renderRow={this._renderRow}/>
                 </View>
             </View>
         );
     }
-
 
     _renderRow = (rowData,sectionID,rowID) => {
        return(
@@ -84,7 +77,6 @@ export default class App extends Component<Props> {
            </View>
        );
     }
-
 
     //在页面渲染之后
     componentDidMount() {
@@ -107,6 +99,7 @@ export default class App extends Component<Props> {
 
     //卸载组件
     componentWillUnmount() {
+        //清除定时
         clearInterval(this.inteval)
     }
 }
@@ -125,7 +118,6 @@ const styles = StyleSheet.create({
         //center: 伸缩元素向每行中点排列
         //space-between: 在每行上均匀分配弹性元素
         //space-around: 在每行上均匀分配弹性元素
-
 
         alignItems: 'center',
         //可以决定其子元素沿着次轴的排列方式：
@@ -157,14 +149,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-
     row: {
         flex: 1,
         height: 60,
         justifyContent: 'center',
         alignItems: 'center',
-
-
     },
     instructions: {
         textAlign: 'center',
