@@ -180,7 +180,6 @@ const styles = StyleSheet.create({
         height: Platform.OS === 'ios' ? 68 : 48,   // 处理iOS状态栏
         alignItems: 'center'  // 使元素垂直居中排布, 当flexDirection为column时, 为水平居中
     },
-
     logo: {
         height: 24,
         width: 64,
