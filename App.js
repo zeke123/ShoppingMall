@@ -181,12 +181,10 @@ const styles = StyleSheet.create({
     input: {
         flex: 1,
         borderColor: 'gray',
-        borderWidth: 2,
     },
     button: {
         flex: 1,
         borderColor: 'gray',
-        borderWidth: 2,
     },
     pruducts: {
         flex: 1,
