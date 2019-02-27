@@ -38,7 +38,6 @@ export default class App extends Component<Props> {
             <View style={styles.container}>
 
                 {/*顶部搜索商品*/}
-
                 <View style={styles.searchbar}>
                     <Image
                         source={require('./images/header/header_logo.png')}
@@ -52,7 +51,6 @@ export default class App extends Component<Props> {
                             keyboardType='web-search'
                             placeholder='搜索京东商品/店铺'
                             style={styles.inputText}/>
-
 
                         <TouchableOpacity onPress={() => this.onVoiceClick()}>
                             <Image
