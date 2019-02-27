@@ -9,6 +9,7 @@ import {
     ScrollView,
     Dimensions,
     ListView,
+    RefreshControl,
     ToastAndroid,
 } from 'react-native';
 
@@ -20,12 +21,12 @@ export default class App extends Component<Props> {
         super(props);
         this.state = {
             currentPage: 0,
-            dataSource: datas.cloneWithRows(['商品1', '商品2', '商品3', '商品4', '商品5', '商品6', '商品7', '商品8', '商品9'])
+            dataSource: datas.cloneWithRows(['商品1', '商品2', '商品3', '商品4', '商品5', '商品6', '商品7', '商品8', '商品9', '商品10', '商品11', '商品12'])
         };
     }
-
     //页面渲染之前
     componentWillMount() {
+
     }
 
     render() {
@@ -48,25 +49,25 @@ export default class App extends Component<Props> {
                         //分页
                                 pagingEnabled={true}>
 
-                        <Text style={{
-                            width: Dimensions.get('window').width, height: 180, backgroundColor: 'gray'
-                        }}>广告1</Text>
+                        <View style={styles.first_advertisment}>
+                            <Text >广告1</Text>
+                        </View>
 
-                        <Text style={{
-                            width: Dimensions.get('window').width, height: 180, backgroundColor: 'orange'
-                        }}>广告2</Text>
+                        <View style={styles.second_advertisment}>
+                            <Text>广告2</Text>
+                        </View>
 
-                        <Text style={{
-                            width: Dimensions.get('window').width, height: 180, backgroundColor: 'yellow'
-                        }}>广告3</Text>
+                        <View style={styles.third_advertisment}>
+                            <Text>广告3</Text>
+                        </View>
 
                     </ScrollView>
                 </View>
 
                 {/*底部商品列表listview*/}
                 <View style={styles.pruducts}>
-                    <ListView dataSource={this.state.dataSource} enableEmptySections={true}
-                              showsHorizontalScrollIndicator={false}
+                    <ListView dataSource={this.state.dataSource}
+                              showsVerticalScrollIndicator={false}
                               renderRow={this._renderRow}/>
                 </View>
             </View>
@@ -80,7 +81,6 @@ export default class App extends Component<Props> {
             </View>
         );
     }
-
 
     //搜索的点击事件
     searchClick() {
@@ -134,10 +134,30 @@ const styles = StyleSheet.create({
         //row:水平轴
         //column:竖直轴（默认为竖直轴）
     },
-
     advertisment: {
         height: 180,
-        backgroundColor: 'green',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+
+    first_advertisment: {
+        width: Dimensions.get('window').width,
+        height: 180,
+        backgroundColor: 'gray',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    second_advertisment: {
+        width: Dimensions.get('window').width,
+        height: 180,
+        backgroundColor: 'orange',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    third_advertisment: {
+        width: Dimensions.get('window').width,
+        height: 180,
+        backgroundColor: 'yellow',
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -145,7 +165,6 @@ const styles = StyleSheet.create({
         flex: 1,
         borderColor: 'gray',
         borderWidth: 2,
-
     },
     button: {
         flex: 1,
@@ -159,7 +178,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     row: {
-        flex: 1,
+        width: Dimensions.get('window').width,//获取屏幕的宽度
         height: 60,
         justifyContent: 'center',
         alignItems: 'center',
