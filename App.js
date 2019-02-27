@@ -52,13 +52,16 @@ export default class App extends Component<Props> {
                             keyboardType='web-search'
                             placeholder='搜索京东商品/店铺'
                             style={styles.inputText}/>
-                        <Image
-                            source={require('./images/header/icon_voice.png')}
-                            style={styles.voiceIcon}/>
+
+
+                        <TouchableOpacity onPress={() => this.onVoiceClick()}>
+                            <Image
+                                source={require('./images/header/icon_voice.png')}
+                                style={styles.voiceIcon}/>
+                        </TouchableOpacity>
                     </View>
 
-
-                    <TouchableOpacity onPress={() => this.searchClick()}>
+                    <TouchableOpacity onPress={() => this.onScanClick()}>
                         <Image
                             source={require('./images/header/icon_qr.png')}
                             style={styles.scanIcon}/>
@@ -113,14 +116,20 @@ export default class App extends Component<Props> {
         );
     }
 
-    //搜索的点击事件
-    searchClick() {
+    //扫描的点击事件
+    onScanClick() {
         Alert.alert('标题', '只有一个按钮的提示内容', [{text: '确定', onPress: () => this.onSureClick()}]);
     }
 
+    //语音图片的点击事件
+    onVoiceClick() {
+        ToastAndroid.show("点击了语音的图片", ToastAndroid.SHORT);
+    }
+
+
     //点击确定的事件
     onSureClick() {
-        ToastAndroid.show("确定", ToastAndroid.SHORT);
+        ToastAndroid.show("点击了扫描的图片", ToastAndroid.SHORT);
     }
 
     //在页面渲染之后
@@ -158,7 +167,6 @@ const styles = StyleSheet.create({
         //可以决定其子元素沿着次轴的排列方式：
         //row:水平轴
         //column:竖直轴（默认为竖直轴）
-
         backgroundColor: 'red',
         justifyContent: 'center',//可以决定其子元素沿着主轴的排列方式：
         //flex-start:从行首开始排列
@@ -166,13 +174,10 @@ const styles = StyleSheet.create({
         //center: 伸缩元素向每行中点排列
         //space-between: 在每行上均匀分配弹性元素
         //space-around: 在每行上均匀分配弹性元素
-
-        alignItems: 'center',
         paddingLeft: 10,
         paddingRight: 10,
         paddingTop: Platform.OS === 'ios' ? 20 : 0,// 处理iOS状态栏
         height: Platform.OS === 'ios' ? 68 : 48,   // 处理iOS状态栏
-        backgroundColor: '#d74047',
         alignItems: 'center'  // 使元素垂直居中排布, 当flexDirection为column时, 为水平居中
     },
 
