@@ -24,7 +24,6 @@ export default class App extends Component<Props> {
             dataSource: datas.cloneWithRows(['商品1', '商品2', '商品3', '商品4', '商品5', '商品6', '商品7', '商品8', '商品9'])
         };
     }
-
     //页面渲染之前
     componentWillMount() {
     }
