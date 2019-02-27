@@ -37,9 +37,14 @@ export default class App extends Component<Props> {
 
                 {/*顶部搜索商品*/}
                 <View style={styles.searchbar}>
-                    <TextInput style={styles.input} placeholder={'搜索商品'}/>
+                    <TextInput
+                        style={styles.input}
+                        placeholder={'搜索商品'}/>
                     {/*Button添加点击事件 onPress={() => this.searchClick()} */}
-                    <Button style={styles.button} title='搜索' onPress={() => this.searchClick()}/>
+                    <Button
+                        style={styles.button}
+                        title='搜索'
+                        onPress={() => this.searchClick()}/>
                 </View>
 
                 {/*
@@ -49,10 +54,12 @@ export default class App extends Component<Props> {
                  */}
 
                 <View style={styles.advertisment}>
-                    <ScrollView ref="scrollView"
-                                horizontal={true}
-                                showsHorizontalScrollIndicator={false}
-                                pagingEnabled={true}>
+                    <ScrollView
+                        ref="scrollView"
+                        horizontal={true}
+                        showsHorizontalScrollIndicator={false}
+                        pagingEnabled={true}>
+
                         <View style={styles.first_advertisment}>
                             <Text >广告1</Text>
                         </View>
@@ -64,6 +71,7 @@ export default class App extends Component<Props> {
                         <View style={styles.third_advertisment}>
                             <Text>广告3</Text>
                         </View>
+
                     </ScrollView>
                 </View>
 
