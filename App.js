@@ -19,6 +19,9 @@ import {
 //创建ListView.DataSource数据源
 const datas = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
+//获取屏幕的宽和高
+const {width, height} = Dimensions.get('window');
+
 export default class App extends Component<Props> {
 
     //生命周期方法 -->首先会执行构造函数
@@ -157,7 +160,7 @@ export default class App extends Component<Props> {
                 nextpagen = 0;
             }
             this.setState({currentPage: nextpage});
-            const offSetX = nextpage * Dimensions.get('window').width;
+            const offSetX = nextpage * width;
             this.refs.scrollView.scrollResponderScrollTo({x: offSetX, y: 0, animated: true})
         }, 2000)
     }
@@ -232,21 +235,21 @@ const styles = StyleSheet.create({
     },
 
     first_advertisment: {
-        width: Dimensions.get('window').width,
+        width: width,
         height: 180,
         backgroundColor: 'gray',
         justifyContent: 'center',
         alignItems: 'center',
     },
     second_advertisment: {
-        width: Dimensions.get('window').width,
+        width: width,
         height: 180,
         backgroundColor: 'orange',
         justifyContent: 'center',
         alignItems: 'center',
     },
     third_advertisment: {
-        width: Dimensions.get('window').width,
+        width: width,
         height: 180,
         backgroundColor: 'yellow',
         justifyContent: 'center',
@@ -267,7 +270,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     row: {
-        width: Dimensions.get('window').width,//获取屏幕的宽度
+        width: width,
         height: 60,
         justifyContent: 'center',
         alignItems: 'center',
