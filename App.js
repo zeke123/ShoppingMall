@@ -53,7 +53,6 @@ export default class App extends Component<Props> {
                                 horizontal={true}
                                 showsHorizontalScrollIndicator={false}
                                 pagingEnabled={true}>
-
                         <View style={styles.first_advertisment}>
                             <Text >广告1</Text>
                         </View>
@@ -65,15 +64,15 @@ export default class App extends Component<Props> {
                         <View style={styles.third_advertisment}>
                             <Text>广告3</Text>
                         </View>
-
                     </ScrollView>
                 </View>
 
                 {/*底部商品列表listview*/}
                 <View style={styles.pruducts}>
-                    <ListView dataSource={this.state.dataSource}
-                              showsVerticalScrollIndicator={false}
-                              renderRow={this._renderRow}/>
+                    <ListView
+                        dataSource={this.state.dataSource}
+                        showsVerticalScrollIndicator={false}
+                        renderRow={this._renderRow}/>
                 </View>
             </View>
         );
@@ -92,11 +91,10 @@ export default class App extends Component<Props> {
         Alert.alert('标题', '只有一个按钮的提示内容', [{text: '确定', onPress: () => this.onSureClick()}]);
     }
 
+    //点击确定的事件
     onSureClick() {
         ToastAndroid.show("确定", ToastAndroid.SHORT);
-
     }
-
 
     //在页面渲染之后
     componentDidMount() {
