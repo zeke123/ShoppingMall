@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Swiper from 'react-native-swiper';
 import {
     Platform,
     StyleSheet,
@@ -15,6 +16,9 @@ import {
     Image,//在图片外层添加TouchableOpacity，才能设置点击事件
     TouchableOpacity,//本组件用于封装视图，使其可以正确响应触摸操作
 } from 'react-native';
+
+
+//yarn add react-native-swiper  安装第三方库react-native-swiper
 
 //模拟数据
 var data = {
@@ -65,6 +69,7 @@ var data = {
 //创建ListView.DataSource数据源
 const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
+
 //获取屏幕的宽和高
 const {width, height} = Dimensions.get('window');
 
@@ -73,11 +78,12 @@ export default class App extends Component<Props> {
     //生命周期方法 -->首先会执行构造函数
     constructor(props) {//构造函数
         super(props);
+
         this.state = {
             //初始化当前页
             currentPage: 0,
             //ListView数据源
-            dataSource: ds.cloneWithRows(data.result)
+            dataSource: ds.cloneWithRows(data.result),
         };
     }
 
@@ -123,33 +129,19 @@ export default class App extends Component<Props> {
                     </TouchableOpacity>
                 </View>
 
-                {/*
-                 中间类似于viewpager轮播图
-                 showsHorizontalScrollIndicator：是否显示滚动条
-                 pagingEnabled：是否显示分页
-                 */}
-
-                <View style={styles.advertisment}>
-                    <ScrollView
-                        ref="scrollView"
-                        horizontal={true}
-                        showsHorizontalScrollIndicator={false}
-                        pagingEnabled={true}>
-
-                        <View style={styles.first_advertisment}>
-                            <Text >广告1</Text>
-                        </View>
-
-                        <View style={styles.second_advertisment}>
-                            <Text>广告2</Text>
-                        </View>
-
-                        <View style={styles.third_advertisment}>
-                            <Text>广告3</Text>
-                        </View>
-
-                    </ScrollView>
+                <View style={styles.swiper_style}>
+                    <Swiper
+                        showsButtons={false}
+                        loop={true}
+                        autoplay={true}
+                        autoplayTimeout={2}>
+                        <Image style={styles.image} source={require('./images/banner/1.jpg')}/>
+                        <Image style={styles.image} source={require('./images/banner/2.jpg')}/>
+                        <Image style={styles.image} source={require('./images/banner/3.jpg')}/>
+                        <Image style={styles.image} source={require('./images/banner/4.jpg')}/>
+                    </Swiper>
                 </View>
+
 
                 {/*
                  底部商品列表listview
@@ -183,14 +175,11 @@ export default class App extends Component<Props> {
 
     //生命周期方法 -->在页面渲染之后
     componentDidMount() {
-        //页面渲染之后，开启定时
-        this.startTiming();
     }
 
     //生命周期方法 -->卸载组件
     componentWillUnmount() {
-        //清除定时
-        clearInterval(this.inteval)
+
     }
 
     _renderRow(item) {
@@ -206,7 +195,7 @@ export default class App extends Component<Props> {
 
     // ListView的item的点击事件
     onListViewItemClick(item) {
-        ToastAndroid.show("点击了->"+item.name, ToastAndroid.SHORT);
+        ToastAndroid.show("点击了->" + item.name, ToastAndroid.SHORT);
     }
 
     //扫描的点击事件
@@ -222,20 +211,6 @@ export default class App extends Component<Props> {
     //点击确定的事件
     onSureClick() {
         ToastAndroid.show("点击了扫描的图片", ToastAndroid.SHORT);
-    }
-
-    //开启定时
-    startTiming() {
-        //设置定时
-        this.inteval = setInterval(() => {
-            nextpage = this.state.currentPage + 1;
-            if (nextpage >= 3) {
-                nextpagen = 0;
-            }
-            this.setState({currentPage: nextpage});
-            const offSetX = nextpage * width;
-            this.refs.scrollView.scrollResponderScrollTo({x: offSetX, y: 0, animated: true})
-        }, 2000)
     }
 }
 
@@ -306,28 +281,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-
-    first_advertisment: {
-        width: width,
-        height: 180,
-        backgroundColor: 'gray',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    second_advertisment: {
-        width: width,
-        height: 180,
-        backgroundColor: 'orange',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    third_advertisment: {
-        width: width,
-        height: 180,
-        backgroundColor: 'yellow',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
     input: {
         flex: 1,
         borderColor: 'gray',
@@ -338,7 +291,7 @@ const styles = StyleSheet.create({
     },
     pruducts: {
         flex: 1,
-        backgroundColor: 'blue',
+        backgroundColor: 'red',
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -348,6 +301,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    bannerImg: {
+        height: 180,
+        width: width,
     },
     name_style: {
         fontSize: 15,
@@ -364,6 +321,12 @@ const styles = StyleSheet.create({
     },
     line: {
         height: 1,
-        backgroundColor: '#999999'
+        backgroundColor: '#ffffff'
     },
+    swiper_style: {
+        height: 180,
+    },
+    image: {
+        resizeMode: 'stretch',
+    }
 });
