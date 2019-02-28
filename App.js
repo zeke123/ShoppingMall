@@ -173,9 +173,7 @@ export default class App extends Component<Props> {
 
                     </Swiper>
                 </View>
-
-
-
+                
                 {/*
                  底部商品列表listview
                  renderRow：接收数据，并渲染数据
