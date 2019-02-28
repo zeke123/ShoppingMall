@@ -15,7 +15,6 @@ import {
     Alert,
     Image,//在图片外层添加TouchableOpacity，才能设置点击事件
     TouchableOpacity,//本组件用于封装视图，使其可以正确响应触摸操作
-
     TouchableHighlight,
 } from 'react-native';
 
@@ -70,7 +69,6 @@ var data = {
 
 //创建ListView.DataSource数据源
 const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-
 
 //获取屏幕的宽和高
 const {width, height} = Dimensions.get('window');
@@ -136,8 +134,25 @@ export default class App extends Component<Props> {
                         showsButtons={false}
                         loop={true}
                         autoplay={true}
-                        autoplayTimeout={2}>
-
+                        autoplayTimeout={2}
+                        dot={<View style={{
+                            backgroundColor: 'transparent',
+                            width: 8,
+                            height: 8,
+                            borderColor: '#ffffff',
+                            borderWidth: 1.5,
+                            borderRadius: 8,
+                            marginRight: 6,
+                        }}/>}
+                        activeDot={<View style={{
+                            backgroundColor: '#999999',
+                            width: 8,
+                            height: 8,
+                            borderColor: '#999999',
+                            borderWidth: 1.5,
+                            borderRadius: 8,
+                            marginRight: 6,
+                        }}/>}>
 
                         <TouchableOpacity onPress={() => this.onfirstAdClick()}>
                             <Image style={styles.image} source={require('./images/banner/1.jpg')}/>
@@ -155,9 +170,9 @@ export default class App extends Component<Props> {
                             <Image style={styles.image} source={require('./images/banner/4.jpg')}/>
                         </TouchableOpacity>
 
-
                     </Swiper>
                 </View>
+
 
 
                 {/*
