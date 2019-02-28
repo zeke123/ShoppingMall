@@ -11,6 +11,7 @@ import {
     Dimensions,
     ListView,
     RefreshControl,
+    ActivityIndicator,
     ToastAndroid,
     Alert,
     Image,//在图片外层添加TouchableOpacity，才能设置点击事件
