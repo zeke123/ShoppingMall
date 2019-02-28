@@ -15,6 +15,8 @@ import {
     Alert,
     Image,//在图片外层添加TouchableOpacity，才能设置点击事件
     TouchableOpacity,//本组件用于封装视图，使其可以正确响应触摸操作
+
+    TouchableHighlight,
 } from 'react-native';
 
 
@@ -135,10 +137,25 @@ export default class App extends Component<Props> {
                         loop={true}
                         autoplay={true}
                         autoplayTimeout={2}>
-                        <Image style={styles.image} source={require('./images/banner/1.jpg')}/>
-                        <Image style={styles.image} source={require('./images/banner/2.jpg')}/>
-                        <Image style={styles.image} source={require('./images/banner/3.jpg')}/>
-                        <Image style={styles.image} source={require('./images/banner/4.jpg')}/>
+
+
+                        <TouchableOpacity onPress={() => this.onfirstAdClick()}>
+                            <Image style={styles.image} source={require('./images/banner/1.jpg')}/>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity onPress={() => this.onSecondAdClick()}>
+                            <Image style={styles.image} source={require('./images/banner/2.jpg')}/>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity onPress={() => this.onThirdAdClick()}>
+                            <Image style={styles.image} source={require('./images/banner/3.jpg')}/>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity onPress={() => this.onfouthAdClick()}>
+                            <Image style={styles.image} source={require('./images/banner/4.jpg')}/>
+                        </TouchableOpacity>
+
+
                     </Swiper>
                 </View>
 
@@ -162,6 +179,38 @@ export default class App extends Component<Props> {
     }
 
     /**
+     * 第一张广告图的点击事件
+     */
+    onfirstAdClick() {
+        Alert.alert('第一张广告图', null, null, null, null)
+
+    }
+
+    /**
+     * 第二张广告图的点击事件
+     */
+    onSecondAdClick() {
+        ToastAndroid.show("第二张广告图", ToastAndroid.SHORT);
+
+    }
+
+    /**
+     * 第三张广告图的点击事件
+     */
+    onThirdAdClick() {
+        ToastAndroid.show("第三张广告图", ToastAndroid.SHORT);
+
+    }
+
+    /**
+     * 第四张广告图的点击事件
+     */
+    onfouthAdClick() {
+        ToastAndroid.show("第四张广告图", ToastAndroid.SHORT);
+
+    }
+
+    /**
      * 设置listview分割线
      * @param sectionID
      * @param rowID
@@ -171,7 +220,6 @@ export default class App extends Component<Props> {
     renderSeparator(sectionID, rowID, adjacentRowHighlighted) {
         return <View key={rowID} style={styles.line}></View>
     }
-
 
     //生命周期方法 -->在页面渲染之后
     componentDidMount() {
