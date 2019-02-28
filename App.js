@@ -198,7 +198,6 @@ export default class App extends Component<Props> {
      */
     onfirstAdClick() {
         Alert.alert('第一张广告图', null, null, null, null)
-
     }
 
     /**
@@ -206,7 +205,6 @@ export default class App extends Component<Props> {
      */
     onSecondAdClick() {
         ToastAndroid.show("第二张广告图", ToastAndroid.SHORT);
-
     }
 
     /**
@@ -214,7 +212,6 @@ export default class App extends Component<Props> {
      */
     onThirdAdClick() {
         ToastAndroid.show("第三张广告图", ToastAndroid.SHORT);
-
     }
 
     /**
@@ -222,7 +219,6 @@ export default class App extends Component<Props> {
      */
     onfouthAdClick() {
         ToastAndroid.show("第四张广告图", ToastAndroid.SHORT);
-
     }
 
     /**
