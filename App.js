@@ -29,7 +29,9 @@ import Dialog, {
     ScaleAnimation,
 } from 'react-native-popup-dialog';
 
-//yarn add react-native-swiper  安装第三方库react-native-swiper
+//yarn add react-native-swiper  安装第三方轮播库react-native-swiper
+
+//yarn add react-native-popup-dialog 安装第三方dialog库react-native-popup-dialog
 
 //模拟数据
 var data = {
