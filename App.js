@@ -17,8 +17,17 @@ import {
     Image,//在图片外层添加TouchableOpacity，才能设置点击事件
     TouchableOpacity,//本组件用于封装视图，使其可以正确响应触摸操作
     TouchableHighlight,
+    StatusBar,
 } from 'react-native';
 
+import Dialog, {
+    DialogTitle,
+    DialogContent,
+    DialogFooter,
+    DialogButton,
+    SlideAnimation,
+    ScaleAnimation,
+} from 'react-native-popup-dialog';
 
 //yarn add react-native-swiper  安装第三方库react-native-swiper
 
@@ -85,6 +94,10 @@ export default class App extends Component<Props> {
             currentPage: 0,
             //ListView数据源
             dataSource: ds.cloneWithRows(data.result),
+            //默认不弹dialog
+            showCustomDialog: false,
+            //默认不弹dialog
+            showScaleDialog: false
         };
     }
 
@@ -97,15 +110,23 @@ export default class App extends Component<Props> {
     render() {
         return (
             <View style={styles.container}>
+                <StatusBar
+                    backgroundColor={'red'}
+                    barStyle={'default'}
+                    networkActivityIndicatorVisible={true}/>
 
                 {/*
                  顶部搜索商品
                  Image 加载本地图片：require('./images/header/header_logo.png')
                  */}
                 <View style={styles.searchbar}>
-                    <Image
-                        source={require('./images/header/header_logo.png')}
-                        style={styles.logo}/>
+
+                    <TouchableOpacity onPress={() => this.onLogoClick()}>
+                        <Image
+                            source={require('./images/header/header_logo.png')}
+                            style={styles.logo}/>
+                    </TouchableOpacity>
+
 
                     <View style={styles.searchBox}>
                         <Image
@@ -170,10 +191,9 @@ export default class App extends Component<Props> {
                         <TouchableOpacity onPress={() => this.onfouthAdClick()}>
                             <Image style={styles.image} source={require('./images/banner/4.jpg')}/>
                         </TouchableOpacity>
-
                     </Swiper>
                 </View>
-                
+
                 {/*
                  底部商品列表listview
                  renderRow：接收数据，并渲染数据
@@ -188,6 +208,95 @@ export default class App extends Component<Props> {
                         }
                         renderRow={(item) => this._renderRow(item)}/>
                 </View>
+
+                <Dialog
+                    onDismiss={() => {
+                        this.setState({showCustomDialog: false});
+                    }}
+                    width={0.85}
+                    visible={this.state.showCustomDialog}
+                    rounded
+                    actionsBordered
+                    dialogAnimation={new SlideAnimation({slideFrom: 'bottom'})}
+                    dialogTitle={
+                        <DialogTitle
+                            title="标题"
+                            textStyle={{
+                                fontSize: 17,
+                            }}
+                            style={{
+                                backgroundColor: '#ffffff',
+                            }}
+                            hasTitleBar={false}
+                            align="center"/>
+                    }
+                    footer={
+                        <DialogFooter>
+                            <DialogButton
+                                text="取消"
+                                textStyle={{
+                                    fontSize: 15,
+                                }}
+                                bordered
+                                onPress={() => {
+                                    this.setState({showCustomDialog: false});
+                                }}
+                                key="button-1"/>
+                            <DialogButton
+                                text="确定"
+                                textStyle={{
+                                    fontSize: 15,
+                                }}
+                                bordered
+                                onPress={() => {
+                                    this.setState({showCustomDialog: false});
+                                }}
+                                key="button-2"/>
+                        </DialogFooter>
+                    }>
+                    <DialogContent
+                        style={{
+                            backgroundColor: '#ffffff',
+                            justifyContent: 'center', alignItems: 'center',
+                        }}>
+                        <Text>是否确定退出登录？</Text>
+                    </DialogContent>
+                </Dialog>
+
+                <Dialog
+                    onTouchOutside={() => {
+                        this.setState({showScaleDialog: false});
+                    }}
+                    width={0.9}
+                    visible={this.state.showScaleDialog}
+                    dialogAnimation={new ScaleAnimation()}
+                    dialogTitle={
+                        <DialogTitle
+                            title="标题"
+                            hasTitleBar={false}/>}
+                    footer={
+                        <DialogFooter>
+                            <DialogButton
+                                text="取消"
+                                textStyle={{
+                                    fontSize: 15,
+                                }}
+                                bordered
+                                onPress={() => {
+                                    this.setState({showScaleDialog: false});
+                                }}
+                                key="button-1"/>
+                        </DialogFooter>}>
+
+
+                    <DialogContent
+                        style={{
+                            backgroundColor: '#ffffff',
+                            justifyContent: 'center', alignItems: 'center',
+                        }}>
+                        <Text>是否确定退出登录？</Text>
+                    </DialogContent>
+                </Dialog>
             </View>
         );
     }
@@ -263,7 +372,15 @@ export default class App extends Component<Props> {
 
     //语音图片的点击事件
     onVoiceClick() {
-        ToastAndroid.show("点击了语音的图片", ToastAndroid.SHORT);
+        this.setState({
+            showCustomDialog: true
+        });
+    }
+
+    onLogoClick() {
+        this.setState({
+            showScaleDialog: true
+        });
     }
 
     //点击确定的事件
