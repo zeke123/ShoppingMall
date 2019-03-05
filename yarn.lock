@@ -4731,6 +4731,11 @@ react-native-popup-dialog@^0.17.0:
     prop-types "^15.6.0"
     react-native-root-siblings "^3.1.7"
 
+react-native-popup-menu@^0.15.4:
+  version "0.15.4"
+  resolved "http://registry.npm.taobao.org/react-native-popup-menu/download/react-native-popup-menu-0.15.4.tgz#65630ad1dad797c8f910ae9724504f0f26be82f5"
+  integrity sha1-ZWMK0drXl8j5EK6XJFBPDya+gvU=
+
 react-native-root-siblings@^3.1.7:
   version "3.1.7"
   resolved "http://registry.npm.taobao.org/react-native-root-siblings/download/react-native-root-siblings-3.1.7.tgz#9af7cf7495311db9fbe929201a3234ed114cfe77"
