@@ -92,6 +92,8 @@ export default class App extends Component<Props> {
         super(props);
 
         this.state = {
+            //是否刷新
+            isRefreshing: false,
             //初始化当前页
             currentPage: 0,
             //ListView数据源
@@ -128,7 +130,6 @@ export default class App extends Component<Props> {
                             source={require('./images/header/header_logo.png')}
                             style={styles.logo}/>
                     </TouchableOpacity>
-
 
                     <View style={styles.searchBox}>
                         <Image
@@ -208,7 +209,12 @@ export default class App extends Component<Props> {
                         renderSeparator={(sectionID, rowID, adjacentRowHighlighted) =>
                             this.renderSeparator(sectionID, rowID, adjacentRowHighlighted)
                         }
-                        renderRow={(item) => this._renderRow(item)}/>
+                        renderRow={(item) => this._renderRow(item)}
+
+                        refreshControl={this._renderRefreshControl()}
+
+
+                    />
                 </View>
 
                 <Dialog
@@ -303,6 +309,29 @@ export default class App extends Component<Props> {
         );
     }
 
+    _renderRefreshControl() {
+        return (
+            <RefreshControl
+                refreshing={this.state.isRefreshing}
+                tintColor={'#0000ff'}
+                onRefresh={this._onRefresh.bind(this)}
+                title={'正在刷新数据，请稍后...'}
+                titleColor={'#0000ff'}/>
+        );
+    }
+
+    _onRefresh()  {
+        this.setState({
+            isRefreshing: true,
+        })
+        //定时2秒刷新
+        setTimeout(() => {
+            this.setState({
+                isRefreshing: false,
+            })
+        }, 2000)
+    }
+
     /**
      * 第一张广告图的点击事件
      */
@@ -344,10 +373,13 @@ export default class App extends Component<Props> {
 
     //生命周期方法 -->在页面渲染之后
     componentDidMount() {
+
+
     }
 
     //生命周期方法 -->卸载组件
     componentWillUnmount() {
+
 
     }
 
