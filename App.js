@@ -110,6 +110,11 @@ export default class App extends Component<Props> {
 
     }
 
+    searchClick() {
+
+        ToastAndroid.show("点击了", ToastAndroid.SHORT);
+    }
+
     //生命周期方法 -->用于渲染界面
     render() {
         return (
@@ -132,9 +137,14 @@ export default class App extends Component<Props> {
                     </TouchableOpacity>
 
                     <View style={styles.searchBox}>
-                        <Image
-                            source={require('./images/header/icon_search.png')}
-                            style={styles.searchIcon}/>
+
+                        <TouchableOpacity onPress={() => this.searchClick()}>
+                            <Image
+                                source={require('./images/header/icon_search.png')}
+                                style={styles.searchIcon}/>
+                        </TouchableOpacity>
+
+
                         <TextInput
                             keyboardType='web-search'
                             placeholder='搜索商品/店铺'
@@ -210,11 +220,7 @@ export default class App extends Component<Props> {
                             this.renderSeparator(sectionID, rowID, adjacentRowHighlighted)
                         }
                         renderRow={(item) => this._renderRow(item)}
-
-                        refreshControl={this._renderRefreshControl()}
-
-
-                    />
+                        refreshControl={this._renderRefreshControl()}/>
                 </View>
 
                 <Dialog
@@ -262,6 +268,7 @@ export default class App extends Component<Props> {
                                 key="button-2"/>
                         </DialogFooter>
                     }>
+
                     <DialogContent
                         style={{
                             backgroundColor: '#ffffff',
@@ -296,7 +303,6 @@ export default class App extends Component<Props> {
                                 key="button-1"/>
                         </DialogFooter>}>
 
-
                     <DialogContent
                         style={{
                             backgroundColor: '#ffffff',
@@ -312,6 +318,7 @@ export default class App extends Component<Props> {
     _renderRefreshControl() {
         return (
             <RefreshControl
+                //是否刷新
                 refreshing={this.state.isRefreshing}
                 tintColor={'#0000ff'}
                 onRefresh={this._onRefresh.bind(this)}
@@ -320,13 +327,15 @@ export default class App extends Component<Props> {
         );
     }
 
-    _onRefresh()  {
+    _onRefresh() {
         this.setState({
+            //可以刷新
             isRefreshing: true,
         })
         //定时2秒刷新
         setTimeout(() => {
             this.setState({
+                //不能刷新
                 isRefreshing: false,
             })
         }, 2000)
@@ -373,13 +382,11 @@ export default class App extends Component<Props> {
 
     //生命周期方法 -->在页面渲染之后
     componentDidMount() {
-
-
+        
     }
 
     //生命周期方法 -->卸载组件
     componentWillUnmount() {
-
 
     }
 
