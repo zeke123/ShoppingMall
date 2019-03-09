@@ -18,6 +18,7 @@ import {
     TouchableOpacity,//本组件用于封装视图，使其可以正确响应触摸操作
     TouchableHighlight,
     StatusBar,
+    Navigator,
 } from 'react-native';
 
 import Dialog, {
@@ -101,7 +102,9 @@ export default class App extends Component<Props> {
             //默认不弹dialog
             showCustomDialog: false,
             //默认不弹dialog
-            showScaleDialog: false
+            showScaleDialog: false,
+            //搜索的内容
+            searchText:''
         };
     }
 
@@ -112,7 +115,7 @@ export default class App extends Component<Props> {
 
     searchClick() {
 
-        ToastAndroid.show("点击了", ToastAndroid.SHORT);
+        ToastAndroid.show("点击了"+this.state.searchText, ToastAndroid.SHORT);
     }
 
     //生命周期方法 -->用于渲染界面
@@ -132,7 +135,7 @@ export default class App extends Component<Props> {
 
                     <TouchableOpacity onPress={() => this.onLogoClick()}>
                         <Image
-                            source={require('./images/header/header_logo.png')}
+                            source={require('../images/header/header_logo.png')}
                             style={styles.logo}/>
                     </TouchableOpacity>
 
@@ -140,7 +143,7 @@ export default class App extends Component<Props> {
 
                         <TouchableOpacity onPress={() => this.searchClick()}>
                             <Image
-                                source={require('./images/header/icon_search.png')}
+                                source={require('../images/header/icon_search.png')}
                                 style={styles.searchIcon}/>
                         </TouchableOpacity>
 
@@ -148,18 +151,25 @@ export default class App extends Component<Props> {
                         <TextInput
                             keyboardType='web-search'
                             placeholder='搜索商品/店铺'
-                            style={styles.inputText}/>
+                            style={styles.inputText}
+
+                            onChangeText={(text=>{
+                                this.setState({
+                                    searchText:text
+                                });
+                            })}
+                        />
 
                         <TouchableOpacity onPress={() => this.onVoiceClick()}>
                             <Image
-                                source={require('./images/header/icon_voice.png')}
+                                source={require('../images/header/icon_voice.png')}
                                 style={styles.voiceIcon}/>
                         </TouchableOpacity>
                     </View>
 
                     <TouchableOpacity onPress={() => this.onScanClick()}>
                         <Image
-                            source={require('./images/header/icon_qr.png')}
+                            source={require('../images/header/icon_qr.png')}
                             style={styles.scanIcon}/>
                     </TouchableOpacity>
                 </View>
@@ -190,19 +200,19 @@ export default class App extends Component<Props> {
                         }}/>}>
 
                         <TouchableOpacity onPress={() => this.onfirstAdClick()}>
-                            <Image style={styles.image} source={require('./images/banner/1.jpg')}/>
+                            <Image style={styles.image} source={require('../images/banner/1.jpg')}/>
                         </TouchableOpacity>
 
                         <TouchableOpacity onPress={() => this.onSecondAdClick()}>
-                            <Image style={styles.image} source={require('./images/banner/2.jpg')}/>
+                            <Image style={styles.image} source={require('../images/banner/2.jpg')}/>
                         </TouchableOpacity>
 
                         <TouchableOpacity onPress={() => this.onThirdAdClick()}>
-                            <Image style={styles.image} source={require('./images/banner/3.jpg')}/>
+                            <Image style={styles.image} source={require('../images/banner/3.jpg')}/>
                         </TouchableOpacity>
 
                         <TouchableOpacity onPress={() => this.onfouthAdClick()}>
-                            <Image style={styles.image} source={require('./images/banner/4.jpg')}/>
+                            <Image style={styles.image} source={require('../images/banner/4.jpg')}/>
                         </TouchableOpacity>
                     </Swiper>
                 </View>
@@ -382,7 +392,7 @@ export default class App extends Component<Props> {
 
     //生命周期方法 -->在页面渲染之后
     componentDidMount() {
-        
+
     }
 
     //生命周期方法 -->卸载组件
