@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 
 
-export default class App extends Component<Props> {
+export default class Detail extends Component<Props> {
 
     render() {
         return (
@@ -33,9 +33,6 @@ const styles = StyleSheet.create({
     text:{
         fontSize:20,
     }
-
-
-
 
 });
 

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Swiper from 'react-native-swiper';
+import Detail from './Detail';
 import {
     Platform,
     StyleSheet,
@@ -18,7 +19,6 @@ import {
     TouchableOpacity,//本组件用于封装视图，使其可以正确响应触摸操作
     TouchableHighlight,
     StatusBar,
-    Navigator,
 } from 'react-native';
 
 import Dialog, {
@@ -104,7 +104,7 @@ export default class App extends Component<Props> {
             //默认不弹dialog
             showScaleDialog: false,
             //搜索的内容
-            searchText:''
+            searchText: ''
         };
     }
 
@@ -115,7 +115,7 @@ export default class App extends Component<Props> {
 
     searchClick() {
 
-        ToastAndroid.show("点击了"+this.state.searchText, ToastAndroid.SHORT);
+        ToastAndroid.show("点击了" + this.state.searchText, ToastAndroid.SHORT);
     }
 
     //生命周期方法 -->用于渲染界面
@@ -153,9 +153,9 @@ export default class App extends Component<Props> {
                             placeholder='搜索商品/店铺'
                             style={styles.inputText}
 
-                            onChangeText={(text=>{
+                            onChangeText={(text => {
                                 this.setState({
-                                    searchText:text
+                                    searchText: text
                                 });
                             })}
                         />
@@ -413,7 +413,11 @@ export default class App extends Component<Props> {
 
     // ListView的item的点击事件
     onListViewItemClick(item) {
-        ToastAndroid.show("点击了->" + item.name, ToastAndroid.SHORT);
+        //从props取出navigator
+        const {navigator} = this.props;
+        if (navigator) {
+            navigator.push({name: 'detail', component: Detail})
+        }
     }
 
     //扫描的点击事件
