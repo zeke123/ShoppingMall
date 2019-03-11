@@ -9,8 +9,6 @@ import {
 
 
 export default class Detail extends Component<Props> {
-
-
     render() {
         return (
             <View style={styles.container}>
@@ -31,6 +29,7 @@ export default class Detail extends Component<Props> {
         //从props取出navigator
         const {navigator} = this.props;
         if (navigator) {
+            //返回上一个界面
             navigator.pop();
         }
 

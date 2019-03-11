@@ -8,7 +8,6 @@ import Home from './Home';
 export default class App extends Component<Props> {
 
     render() {
-
         return (
             <Navigator
                 initialRoute={{
@@ -17,20 +16,16 @@ export default class App extends Component<Props> {
                 }}
 
                 configureScene={(route) => {
-
-                    return Navigator.SceneConfigs.FloatFromRight;
+                    //过渡动画 PushFromRight（默认）
+                    //FloatFromRight、FloatFromLeft、FloatFromBottom、FloatFromBottomAndroid、FadeAndroid、HorizontalSwipeJump、HorizontalSwipeJumpFromRight、VerticalUpSwipeJump、VerticalDownSwipeJump
+                    return Navigator.SceneConfigs.PushFromRight;
                 }}
 
                 renderScene={(route, navigator) => {
                     const Component = route.component;
-
                     return <Component{...route.params} navigator={navigator}/>
                 }}
-
-
             />);
     }
-
-
 }
 
