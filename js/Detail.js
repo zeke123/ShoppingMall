@@ -26,6 +26,10 @@ export default class Detail extends Component<Props> {
             </View>
         );
     }
+
+
+
+
     // 返回上一页面
     backUp(){
         //从props取出navigator
@@ -35,6 +39,7 @@ export default class Detail extends Component<Props> {
         }
         
     }
+    
 }
 
 const styles = StyleSheet.create({
