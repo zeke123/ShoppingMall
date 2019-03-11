@@ -12,7 +12,6 @@ export default class Detail extends Component<Props> {
 
 
 
-    //第一个版本
     render() {
         return (
             <View style={styles.container}>
@@ -27,6 +26,14 @@ export default class Detail extends Component<Props> {
             </View>
         );
     }
+
+
+
+
+
+
+
+    
 
     // 返回上一页面
     backUp(){
