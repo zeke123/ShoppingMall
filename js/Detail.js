@@ -11,7 +11,7 @@ import {
 export default class Detail extends Component<Props> {
 
 
-
+    //
     render() {
         return (
             <View style={styles.container}>
@@ -29,11 +29,6 @@ export default class Detail extends Component<Props> {
 
 
 
-
-
-
-
-    
 
     // 返回上一页面
     backUp(){
