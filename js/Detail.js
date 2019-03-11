@@ -10,7 +10,7 @@ import {
 
 export default class Detail extends Component<Props> {
 
-    //新
+
 
     render() {
         return (
@@ -26,6 +26,14 @@ export default class Detail extends Component<Props> {
             </View>
         );
     }
+
+
+
+
+
+
+
+    
 
     // 返回上一页面
     backUp(){
