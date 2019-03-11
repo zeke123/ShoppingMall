@@ -9,7 +9,7 @@ import {
 
 export default class Detail extends Component<Props> {
 
-    //新的版本 测试
+    //新的版本
 
     render() {
         return (
