@@ -26,6 +26,7 @@ export default class Detail extends Component<Props> {
             </View>
         );
     }
+<<<<<<< HEAD
 
 
 
@@ -35,6 +36,8 @@ export default class Detail extends Component<Props> {
 
     
 
+=======
+>>>>>>> a3b558e254a52a31d711dd2266b70ed0067ee851
     // 返回上一页面
     backUp(){
         //从props取出navigator
@@ -44,7 +47,6 @@ export default class Detail extends Component<Props> {
         }
         
     }
-    
 }
 
 const styles = StyleSheet.create({
