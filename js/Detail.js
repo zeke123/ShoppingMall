@@ -12,6 +12,7 @@ export default class Detail extends Component<Props> {
 
 
 
+
     render() {
         return (
             <View style={styles.container}>
