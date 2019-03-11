@@ -10,12 +10,7 @@ import {
 
 export default class Detail extends Component<Props> {
 
-
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 3d9cc026494e49ceaa629b2fe0d054467e081e17
+    
     render() {
         return (
             <View style={styles.container}>
