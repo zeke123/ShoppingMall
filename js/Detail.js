@@ -11,13 +11,12 @@ import {
 export default class Detail extends Component<Props> {
 
 
-
     render() {
         return (
             <View style={styles.container}>
 
                 <TouchableOpacity onPress={() => this.backUp()}>
-                    
+
                     <Text style={styles.text}>
                         详情界面
                     </Text>
@@ -26,26 +25,16 @@ export default class Detail extends Component<Props> {
             </View>
         );
     }
-<<<<<<< HEAD
 
 
-
-
-
-
-
-    
-
-=======
->>>>>>> a3b558e254a52a31d711dd2266b70ed0067ee851
     // 返回上一页面
-    backUp(){
+    backUp() {
         //从props取出navigator
         const {navigator} = this.props;
         if (navigator) {
             navigator.pop();
         }
-        
+
     }
 }
 
