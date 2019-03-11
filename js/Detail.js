@@ -17,7 +17,7 @@ export default class Detail extends Component<Props> {
 
 
 
-    
+
 
     render() {
         return (
@@ -33,6 +33,14 @@ export default class Detail extends Component<Props> {
             </View>
         );
     }
+
+
+
+
+
+
+
+    
 
     // 返回上一页面
     backUp(){
