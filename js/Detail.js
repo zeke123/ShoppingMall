@@ -9,6 +9,15 @@ import {
 
 
 export default class Detail extends Component<Props> {
+
+    //生命周期方法 -->首先会执行构造函数
+    constructor(props) {//构造函数
+        super(props);
+        this.state = {
+
+            current: false,
+        };
+    }
     render() {
         return (
             <View style={styles.container}>
@@ -35,9 +44,7 @@ export default class Detail extends Component<Props> {
             //返回上一个界面
             navigator.pop();
         }
-
     }
-
 }
 
 const styles = StyleSheet.create({
@@ -47,7 +54,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'gray',
         justifyContent: 'center',
         alignItems: 'center',
-
     },
 
     text: {

@@ -4,23 +4,29 @@ import TabNavigator from 'react-native-tab-navigator';
 import {
     StyleSheet,
     Image,
+    BackHandler,
+    ToastAndroid,
 } from 'react-native';
 
 import Mine from './Mine';
 import Home from './Home';
 
 
+var lastBackPressed;
+var current = true;
+
 export default class Main extends Component<Props> {
+
 
 
     //生命周期方法 -->首先会执行构造函数
     constructor(props) {//构造函数
         super(props);
         this.state = {
-            selectedTab: 'home'
+            selectedTab: 'home',
+            current: true,
         };
     }
-
 
     render() {
         return (
@@ -61,14 +67,39 @@ export default class Main extends Component<Props> {
     }
 
 
+    componentDidMount() {
+        BackHandler.addEventListener('hardwareBackPress', this.onBackAndroid);
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.onBackAndroid);
+    }
+
+    onBackAndroid = () => {
+        //如果是在首页
+        if (this.state.current == true) {
+            if (lastBackPressed && lastBackPressed + 2000 >= Date.now()) {
+                //在2秒内按过back返回，可以退出应用
+                BackHandler.exitApp();
+                return false;
+            }
+            lastBackPressed = Date.now();
+            ToastAndroid.show('再按一次退出应用', ToastAndroid.SHORT);
+            return true;
+        } else {
+            if (this.props && this.props.navigation) {
+                //返回上一级（非首页）
+                this.props.navigator.pop();
+            }
+        }
+    }
 }
+
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: 'gray',
-
-
     },
     tab_image: {
 
