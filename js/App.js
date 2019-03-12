@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 import {Navigator} from 'react-native-deprecated-custom-components';
 
-import Home from './Home';
+import Main from './Main';
 
 
 export default class App extends Component<Props> {
@@ -11,8 +11,8 @@ export default class App extends Component<Props> {
         return (
             <Navigator
                 initialRoute={{
-                    name: 'home',
-                    component: Home
+                    name: 'main',
+                    component: Main
                 }}
 
                 configureScene={(route) => {
