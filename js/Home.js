@@ -416,7 +416,13 @@ export default class App extends Component<Props> {
         //从props取出navigator
         const {navigator} = this.props;
         if (navigator) {
-            navigator.push({name: 'detail', component: Detail})
+            navigator.push({
+                name: 'detail',
+                component: Detail,
+                params:{
+                    productName:item.name
+                }
+            })
         }
     }
 

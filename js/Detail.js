@@ -20,10 +20,13 @@ export default class Detail extends Component<Props> {
                     </Text>
                 </TouchableOpacity>
 
+                <Text style={styles.text}>{this.props.productName}</Text>
+
+
             </View>
         );
     }
-    
+
     // 返回上一页面
     backUp() {
         //从props取出navigator
@@ -34,7 +37,7 @@ export default class Detail extends Component<Props> {
         }
 
     }
-    
+
 }
 
 const styles = StyleSheet.create({
