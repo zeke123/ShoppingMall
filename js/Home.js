@@ -147,7 +147,6 @@ export default class App extends Component<Props> {
                                 style={styles.searchIcon}/>
                         </TouchableOpacity>
 
-
                         <TextInput
                             keyboardType='web-search'
                             placeholder='搜索商品/店铺'
@@ -157,8 +156,7 @@ export default class App extends Component<Props> {
                                 this.setState({
                                     searchText: text
                                 });
-                            })}
-                        />
+                            })}/>
 
                         <TouchableOpacity onPress={() => this.onVoiceClick()}>
                             <Image

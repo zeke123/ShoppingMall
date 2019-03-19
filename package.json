@@ -9,7 +9,9 @@
   "dependencies": {
     "react": "16.6.3",
     "react-native": "0.58.4",
+    "react-native-actionsheet": "^2.4.2",
     "react-native-deprecated-custom-components": "^0.1.2",
+    "react-native-picker": "^4.3.7",
     "react-native-popup-dialog": "^0.17.0",
     "react-native-popup-menu": "^0.15.4",
     "react-native-swiper": "^1.5.14",

@@ -11,14 +11,10 @@ import {
 import Mine from './Mine';
 import Home from './Home';
 
-
 var lastBackPressed;
-var current = true;
 
 export default class Main extends Component<Props> {
-
-
-
+    
     //生命周期方法 -->首先会执行构造函数
     constructor(props) {//构造函数
         super(props);
@@ -94,7 +90,6 @@ export default class Main extends Component<Props> {
         }
     }
 }
-
 
 const styles = StyleSheet.create({
     container: {
