@@ -114,7 +114,6 @@ export default class App extends Component<Props> {
     }
 
     searchClick() {
-
         ToastAndroid.show("点击了" + this.state.searchText, ToastAndroid.SHORT);
     }
 
@@ -127,10 +126,6 @@ export default class App extends Component<Props> {
                     barStyle={'default'}
                     networkActivityIndicatorVisible={true}/>
 
-                {/*
-                 顶部搜索商品
-                 Image 加载本地图片：require('./images/header/header_logo.png')
-                 */}
                 <View style={styles.searchbar}>
 
                     <TouchableOpacity onPress={() => this.onLogoClick()}>
@@ -151,7 +146,6 @@ export default class App extends Component<Props> {
                             keyboardType='web-search'
                             placeholder='搜索商品/店铺'
                             style={styles.inputText}
-
                             onChangeText={(text => {
                                 this.setState({
                                     searchText: text

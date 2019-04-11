@@ -21,17 +21,12 @@ export default class Detail extends Component<Props> {
     render() {
         return (
             <View style={styles.container}>
-
                 <TouchableOpacity onPress={() => this.backUp()}>
-
                     <Text style={styles.text}>
                         详情界面
                     </Text>
                 </TouchableOpacity>
-
                 <Text style={styles.text}>{this.props.productName}</Text>
-
-
             </View>
         );
     }
@@ -55,10 +50,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-
     text: {
         fontSize: 20,
     }
-
 });
 

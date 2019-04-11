@@ -54,8 +54,6 @@ export default class Main extends Component<Props> {
                         style={styles.tab_image}/>}
                     tabStyle={{alignSelf: 'center', justifyContent: 'center'}}
                     onPress={() => this.setState({selectedTab: 'mine'})}>
-
-
                     <Mine navigator={this.props.navigator}/>
                 </TabNavigator.Item>
             </TabNavigator>
@@ -97,8 +95,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'gray',
     },
     tab_image: {
-
-
         width: 25,
         height: 30,
         top: 8
