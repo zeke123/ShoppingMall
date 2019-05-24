@@ -7,14 +7,12 @@ import {
     TouchableOpacity,
 } from 'react-native';
 
-
 export default class Detail extends Component<Props> {
 
     //生命周期方法 -->首先会执行构造函数
     constructor(props) {//构造函数
         super(props);
         this.state = {
-
             current: false,
         };
     }

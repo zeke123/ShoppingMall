@@ -1,13 +1,11 @@
 import React, {Component} from 'react';
 import TabNavigator from 'react-native-tab-navigator';
-
 import {
     StyleSheet,
     Image,
     BackHandler,
     ToastAndroid,
 } from 'react-native';
-
 import Mine from './Mine';
 import Home from './Home';
 
@@ -44,7 +42,6 @@ export default class Main extends Component<Props> {
                 </TabNavigator.Item>
                 <TabNavigator.Item
                     selected={this.state.selectedTab === 'mine'}
-
                     selectedTitleStyle={{color: "#3496f0"}}
                     renderIcon={() => <Image
                         source={require('../images/tabs/personal_normal.png')}
@@ -59,7 +56,6 @@ export default class Main extends Component<Props> {
             </TabNavigator>
         );
     }
-
 
     componentDidMount() {
         BackHandler.addEventListener('hardwareBackPress', this.onBackAndroid);
